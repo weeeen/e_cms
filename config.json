@@ -1,0 +1,7 @@
+{
+  "db": "blog",
+  "dbUser": "root",
+  "dbPassword": "kdsw229y",
+  "apiUrl": "http://localhost:3000",
+  "secret": "this is my super secret"
+}

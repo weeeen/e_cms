@@ -5,7 +5,7 @@ module.exports = {
     saltHashPassword,
     createUser ({ username, password, level }) {
         console.log(`Add manger ${username} with password ${ password }`);
-        const { salt, hash } = saltHashPassword(password);
+        const { salt, hash } = saltHashPassword({ password });
         return knex('user').insert({
             username,
             encrypt_password: hash,
@@ -22,7 +22,7 @@ module.exports = {
                     password,
                     salt: user.salt
                 });
-                return { success: hash === user.encrypt_password }
+                return { success: hash === user.encrypt_password, user }
             })
     }
 };

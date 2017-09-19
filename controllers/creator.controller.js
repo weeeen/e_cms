@@ -15,17 +15,6 @@ router.post('/createUser', (req, res) => {
         console.log(error);
         res.send("error");
     });
-
-});
-
-router.post('/signIn', (req, res) => {
-    const username = req.body.user;
-    const password = req.body.password;
-    salt.authenticate({ username, password })
-        .then(({ success }) => {
-            if (success) res.sendStatus(200);
-            else res.sendStatus(401);
-        })
 });
 
 
