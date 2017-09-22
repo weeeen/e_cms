@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-app.use(express.static('public'));
+app.use(express.static('dist'));
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
@@ -15,8 +15,11 @@ app.use((req, res, next) => {
 });
 
 app.use('/creator', require('./controllers/creator.controller')); //after create initial users, delete this line
+app.use('/godMode', express.static(path.join(__dirname + '/dist'))); //after create initial users, delete this line
+
 app.use('/user', require('./controllers/user.controller'));
 app.use('/manager', require('./controllers/manager.controller'));
+app.use('/manager/*', express.static(path.join(__dirname + '/dist')));
 
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
